@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>Image display test</h1>
-    <img src="{{asset('/app/imageTest/','TQXGY8YU8jw0tz8JtVSKUI4H2vkqtgiicl20bSrN.png' )}}" alt="">
+    <img src="{{ asset('storage/imageTest/D10zPdSyfQQoDy5zoKl6bu5hLMo7PmxmUUnGciWf.png') }}" alt="">
 </body>
 </html>
