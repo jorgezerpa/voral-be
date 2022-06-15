@@ -25,7 +25,7 @@ class ProductController extends Controller
         $fileName = '';
 
         if($request->hasFile('image')){
-            $fileName = $request->file('image')->store('public/productsImages');
+            $fileName = $request->file('image')->store('public');
         } else {
             $fileName = null;
         }
@@ -56,7 +56,7 @@ class ProductController extends Controller
                 Storage::delete($product->image);
             }
 
-            $fileName=$request->file('image')->store('public/productsImages');
+            $fileName=$request->file('image')->store('public');
         } else {
             // $fileName=$request->image;
             $fileName=$product->image;
@@ -87,6 +87,6 @@ class ProductController extends Controller
 
     public function image(Request $request)
     {
-        return $request->file('image')->store('public/imageTest');
+        return $request->file('image')->store('public');
     }
 }
