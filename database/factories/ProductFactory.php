@@ -17,10 +17,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name(),
-            'description'=>$this->faker->text(50),
+            'name'=>'Product Name',
+            'description'=>'a really delicious product description thath will send all this products',
             'price'=>rand(5,100),
-            'image'=>$this->faker->text(30),
+            'image'=>'https://i0.wp.com/decoraciondetortasweb.com/wp-content/uploads/2019/06/Ponquesitos-De-Chocolate.png?ssl=1',
             'categorie_id'=>rand(1,10),
         ];
     }
