@@ -14,9 +14,10 @@
                         Categorias
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Categoria</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria</a></li>
+                      <li><a class="dropdown-item" href="{{route('index')}}">Todas</a></li>
+                    @foreach($categories as $categorie)
+                        <li><a class="dropdown-item" href="{{route('index',['categorie' => $categorie] )}}">{{ $categorie->name }}</a></li>
+                    @endforeach
                   </ul>
                 </div>
 
@@ -29,6 +30,7 @@
                         <a href="{{route('product', $product)}}" class='text-bold fs-3 fw-bold'>{{ $product->name }}</a>
                         <p class='text-sm fs-6 fw-light'>{{$product->description}}</p>
                         <p class='text-xs fs-5 fw-normal mb-0'>{{$product->price}}$</p>
+                        <p class='text-xs fs-5 fw-normal mb-0'>{{$product->categorie->name}}</p>
                         <div class='d-flex justify-content-end mt-5'>
                             <a href="{{route('edit', $product)}}" class="btn btn-success mx-1 btn-sm">Editar</a>
                             <a href="{{route('delete', $product)}}" class="btn btn-primary btn-sm">Eliminar</a>
@@ -39,5 +41,5 @@
         </div>
 
 
-        <!-- {{ $products->links() }} -->
+        {{ $products->links() }}
     @endsection

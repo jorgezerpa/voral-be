@@ -3,7 +3,7 @@
 <div class='container p-4'>
     <a href="{{route('index')}}" class='mx-1 btn btn-primary btn-lg'>volver</a>
     <h2 class='text-center my-5'>crea un nuevo producto</h2>
-            <form action="{{route('store')}}" method='POST' enctype='multipart/form-data'>
+            <form id='createBlade' action="{{route('store')}}" method='POST' enctype='multipart/form-data'>
                 @csrf
                 <div class="mb-3">
                     <label for="name" class='form-label fs-4'>Nombre</label>
@@ -21,9 +21,13 @@
                     <input name='price' value="{{old('price', '')}}" type="number" id="price" placeholder='precio' class='form-control'>
                 </div>
                 <div class="mb-3">
-                    <label for="categorie_id" class='form-label fs-4'>categoría</label>
+                    <label for="categorie_id" class='form-label fs-4'>categoria</label>
                     <span class='text-danger fs-6'>@error('categorie_id'){{$message}}@enderror</span>
-                    <input name='categorie_id' value="{{old('categorie_id', '')}}" type="number" id="categorie_id" placeholder='categoria' class='form-control'>
+                    <select id="categorie_id" name="categorie_id" form="createBlade" placeholder='categories'>
+                        @foreach($categories as $categorie)
+                            <option value="{{$categorie->name}}">{{ $categorie->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="image" class='form-label fs-4'>imagen</label>

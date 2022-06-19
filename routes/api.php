@@ -17,6 +17,7 @@ Route::apiResource('v1/products', App\Http\Controllers\Api\V1\ProductController:
 Route::apiResource('v1/products', App\Http\Controllers\Api\V1\ProductController::class)
     ->only('index','show');
 
+Route::post('v1/send-order', [App\Http\Controllers\Api\V1\ProductController::class, 'sendOrder']);
 
                 // CATEGORIES
 Route::apiResource('v1/categories', App\Http\Controllers\Api\V1\CategorieController::class)

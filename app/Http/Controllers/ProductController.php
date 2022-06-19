@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use Storage;
 
@@ -15,14 +16,23 @@ class ProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
+        if(isset($request->all()['categorie'])){
+            return view('index', [
+                'products' => Product::where('categorie_id', $request->all()['categorie'])->latest()->paginate(),
+                'categories'=>Categorie::All()
+            ]);
+        }
         return view('index', [
             'products' => Product::latest()->paginate(),
+            'categories'=>Categorie::All()
         ]);
     }
 
     public function create(){
-        return view('create');
+        return view('create', [
+            'categories'=>Categorie::All()
+        ]);
     }
 
     public function store(Request $request){
@@ -46,7 +56,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'image' => $request->getSchemeAndHttpHost().str_replace('public','/storage', $fileName),
-            'categorie_id'=>$request->categorie_id,
+            'categorie_id'=>Categorie::where('name', $request->categorie_id)->first()->id,
         ]);
         return redirect()->route('index');
     }
@@ -58,19 +68,20 @@ class ProductController extends Controller
     }
 
     public function edit(Product $product){
+        // <input name='categorie_id' type="text" id="categorie_id" placeholder='categoria' class='form-control' value="{{old('categorie_id', $product->categorie->name)}}">
         return view('edit', [
             'product' => $product,
+            'categories'=>Categorie::All()
         ]);
     }
 
     public function update(Product $product, Request $request){
         $request->validate([
-            'name'=> 'required|unique:products,name',
+            'name'=> 'required',
             'description'=> 'required',
             'categorie_id'=> 'required',
             'price'=> 'required',
         ]);
-
         $fileName = '';
         if($request->hasFile('image')){
             if(Storage::exists($product->image)){
@@ -82,6 +93,7 @@ class ProductController extends Controller
         }
 
         $product->name = $request->name;
+        $product->categorie_id = Categorie::where('name', $request->categorie_id)->first()->id;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->image = $request->hasFile('image') ? $request->getSchemeAndHttpHost().str_replace('public','/storage', $fileName) : $fileName=$product->image;

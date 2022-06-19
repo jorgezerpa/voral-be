@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+use App\Mail\orderInfo;
+use Illuminate\Support\Facades\Mail;
+
 use App\Http\Resources\V1\ProductResource;
 use App\Http\Resources\V1\ProductCollection;
 use Illuminate\Support\Facades\File;
@@ -85,8 +88,12 @@ class ProductController extends Controller
     }
 
 
-    public function image(Request $request)
+    public function sendOrder(Request $request)
     {
-        return $request->file('image')->store('public');
+        $information = $request->All();
+
+        Mail::to('jorgelzd181102@gmail.com')->send(new orderInfo($information));
+        return 'sended';
     }
 }
+

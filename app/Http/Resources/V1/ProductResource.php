@@ -19,7 +19,7 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'image' => $request->getSchemeAndHttpHost().str_replace('public','/storage', $this->image),
+            'image' => $this->image,
             'categorie' => $this->categorie->name,
             'created_at' => $this->published_at,
         ];
