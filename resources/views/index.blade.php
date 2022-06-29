@@ -2,7 +2,7 @@
     @section('content')
         <div class='container p-4'>
             <div class='d-flex justify-content-center container mt-4'>
-                <h1 class='text-bold'>Buen Dia Bocadicto!</h1>
+                <h1 class='text-bold'>Buen Dia voral-jefa!</h1>
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf
                   <button type="submit" class="btn btn-primary">Logout</button>

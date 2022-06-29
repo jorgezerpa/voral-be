@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->text('description');
+            $table->string('description');
             $table->float('price');
-            $table->text('image');
+            $table->string('image');
+            $table->string('size');
+
             $table->unsignedBigInteger('categorie_id');
 
             $table->timestamps();

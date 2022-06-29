@@ -7,23 +7,22 @@
     <title>infomación del pedido</title>
 </head>
 <body>
-    <h2 style="text-align: center; margin: 0; color: rgba(255,53,184); font-size: 40px" >¡Tienes un nuevo BocaPedido!</h2>
-    <h3 style="text-align: center; margin: 0; color: #333; font-size: 30px">Es hora de bocaTrabajar :)</h4>
+    <h2 style="text-align: center; margin: 0; color: rgba(255,53,184); font-size: 40px" >¡Tienes un nuevo voralPedido!</h2>
+    <h3 style="text-align: center; margin: 0; color: #333; font-size: 30px">Es hora de voralTrabajar :)</h4>
 
     <h3 style="margin: 60px 0 10px 0; color: #444; font-size: 25px">Datos del Cliente</h3>
     <ul style="margin-bottom: 20px;">
         <li style="color: #555; font-size: 22px;">nombre: {{$information['clientInfo']['name']}}</li>
         <li style="color: #555; font-size: 22px;">teléfono: {{$information['clientInfo']['phone']}}</li>
-        <li style="color: #555; font-size: 22px;">correo: {{$information['clientInfo']['email']}}</li>
     </ul>
 
     <h3 style="margin: 40px 0 10px 0; color: #444; font-size: 25px">Datos del pedido</h3>
     <ul>
     @foreach($information['products'] as $product)
         <li style="margin-bottom: 10px; color: #555; font-size: 22px;">
-            {{$product['name']}} <br>
-            {{$product['quantity']}} unidades <br>
-            {{$product['price']}} $
+            producto: {{$product['name']}} <br>
+            talla: {{$product['size']}} <br>
+            precio: {{$product['price']}} $
         </li>
     @endforeach
     </ul>

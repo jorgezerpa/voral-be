@@ -11,10 +11,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'bocadictos_admin',
-            'email' => 'bocadictos@admin.com',
+            'name' => 'voral_admin',
+            'email' => 'voral@admin.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('bocadictos 123'),
+            'password' => Hash::make('voral 123'),
             'remember_token' => Str::random(10),
         ];
     }

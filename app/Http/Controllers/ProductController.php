@@ -42,8 +42,8 @@ class ProductController extends Controller
             'categorie_id'=> 'required',
             'price'=> 'required',
             'image'=> 'required',
+            'size'=>'required',
         ]);
-
         $fileName = '';
 
         if($request->hasFile('image')){
@@ -52,11 +52,12 @@ class ProductController extends Controller
             $fileName = null;
         }
         $Product = Product::create([
+            'size'=>'m',
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'image' => $request->getSchemeAndHttpHost().str_replace('public','/storage', $fileName),
-            'categorie_id'=>Categorie::where('name', $request->categorie_id)->first()->id,
+            'categorie_id'=>Categorie::where('name', $request->categorie_id)->first()->id, //it should be categorie_name on the req
         ]);
         return redirect()->route('index');
     }
@@ -81,6 +82,7 @@ class ProductController extends Controller
             'description'=> 'required',
             'categorie_id'=> 'required',
             'price'=> 'required',
+            'size'=>'required',
         ]);
         $fileName = '';
         if($request->hasFile('image')){
@@ -96,6 +98,7 @@ class ProductController extends Controller
         $product->categorie_id = Categorie::where('name', $request->categorie_id)->first()->id;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->size = $request->size;
         $product->image = $request->hasFile('image') ? $request->getSchemeAndHttpHost().str_replace('public','/storage', $fileName) : $fileName=$product->image;
         $product->save();
 

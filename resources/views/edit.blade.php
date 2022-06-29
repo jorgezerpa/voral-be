@@ -10,6 +10,11 @@
                     <input name='name' type="text" id="name" placeholder='nombre' class='form-control' value="{{old('name', $product->name)}}">
                 </div>
                 <div class="mb-3">
+                    <label for="size" class='form-label fs-4'>Talla</label>
+                    <span class='text-danger fs-6'>@error('size'){{$message}}@enderror</span>
+                    <input name='size' value="{{old('size', $product->size)}}" type="text" id="size" placeholder='talla' class='form-control'>
+                </div>
+                <div class="mb-3">
                     <label for="description" class='form-label fs-4'>Descripción</label>
                     <span class='text-danger fs-6'>@error('description'){{$message}}@enderror</span>
                     <textarea name="description" id="description" rows="10" class='form-control'>{{old('description', $product->description)}}</textarea>
