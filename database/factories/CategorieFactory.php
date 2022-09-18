@@ -18,6 +18,7 @@ class CategorieFactory extends Factory
     {
         return [
             'name'=>$this->faker->word(),
+            'image'=>'https://i0.wp.com/decoraciondetortasweb.com/wp-content/uploads/2019/06/Ponquesitos-De-Chocolate.png?ssl=1'
         ];
     }
 }

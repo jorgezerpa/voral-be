@@ -21,7 +21,8 @@
                   </ul>
                 </div>
 
-                <a href="{{route('create')}}" class="mb-5 btn btn-success btn-lg">nuevo</a>
+                <a href="{{route('create')}}" class="mb-5 btn btn-success btn-lg">nuevo producto</a>
+                <a href="{{route('list-categories')}}" class="mb-5 btn btn-success btn-lg">ver Categorías</a>
             </div>
 
             <div class='row d-flex justify-content-center'>
